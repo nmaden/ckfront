@@ -12,7 +12,7 @@
                 <p class="header__purple">Перезвоните нам</p>
                 <p class="header__purple">Задать вопрос</p>
                 <div class="header__menu__last">
-                    <p class="header__purple">8 777 777 777</p>
+                    <p class="header__purple">8 888 8888</p>
                     <p class="header__gray">- по будням с 9:00 - 21:00</p>
                 </div>
             </div>
