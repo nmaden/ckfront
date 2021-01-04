@@ -322,11 +322,12 @@
        
                 this.$http.post('guest/send/message', obj)
                 .then(res => {
-                        this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
+                    this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
+                    this.login = "";
+                    this.phone = "";
                 })
                 .catch(errors => {
                     consol.log('Ошибка ' + error.response.data.errors);
-            
                 });
             },
             change_image(level) {

@@ -122,7 +122,8 @@ export default {
         
         this.$http.post('guest/send/message', obj)
           .then(res => {
-            
+                this.login = "";
+                this.phone = "";
                 this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
         })
         .catch(errors => {
