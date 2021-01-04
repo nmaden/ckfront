@@ -1,5 +1,5 @@
 <template>
-      <form @submit.prevent="confirmation" novalidate="true">
+      <form @submit.prevent="confirmation" >
             <div class="div-login">
                 <div class="img-input">
                   <i class="fas fa-user-alt"></i>
@@ -11,7 +11,7 @@
 
                       autocorrect= "off"
                       aucapitalize= "off"
-                      
+                      required
                       >
                 </div> 
                 <div class="img-input">
@@ -23,6 +23,7 @@
                       placeholder="+7 xxx xx xx"
                       v-mask="mask"
                       type="text"
+                      required
                      >
                 </div>
                   
@@ -111,7 +112,23 @@ export default {
       }
     },
     confirmation() {
-
+      let obj = {
+          name: this.login,
+          phone: this.phone,
+        };
+      
+      // alert(obj.email+' '+obj.first_name+' '+obj.last_name+' '+obj.birth_date+' '+obj.gender+' '+obj.locale);
+        // this.preloaderEndRegister = true;
+        
+        this.$http.post('guest/send/message', obj)
+          .then(res => {
+            
+                this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
+        })
+        .catch(errors => {
+            consol.log('Ошибка ' + error.response.data.errors);
+    
+        });
     },
   },
 };

@@ -4,7 +4,13 @@ import router from './router';
 import VueCookies from 'vue-cookies'
 import axios from 'axios';
 import VModal from 'vue-js-modal';
-import VueMask from 'v-mask'
+import VueMask from 'v-mask';
+
+
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
+
 Vue.use(VueMask);
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
@@ -15,7 +21,7 @@ Vue.use(VueCookies);
 Vue.use(VModal, { dialog: true });
 
 Vue.prototype.$http = axios.create({
-  baseURL: 'http://192.168.0.2:8000/v1',
+  baseURL: 'http://127.0.0.1:8000/api/v1',
 });
 
 

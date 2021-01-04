@@ -245,17 +245,17 @@
                     
 
                 </div>
-                <div class="third__level__feed main__column">
+                <form  @submit.prevent="confirmation" class="third__level__feed main__column">
                     <p class="contacts__title">Остались вопросы?</p>
                     <p class="contacts__mintitle">Введите ваши данные и наш менеджер</p>
                     <p class="contacts__mintitle">перезвонит вам в течении 15 минут</p>
                     
-                    <input type="text" placeholder="Имя">
-                    <input type="text" placeholder="Электронная почта">
-                    <input type="text" placeholder="Номер телефона">
+                    <input type="text" v-model="login" placeholder="Имя" required>
+                    <!-- <input type="text" placeholder="Электронная почта"> -->
+                    <input type="text" v-mask="mask" placeholder="+7 xxx xx xx" v-model="phone" required>
                     
-                    <div class="third__level__submit">Оставить заявку</div>
-                </div>
+                    <button class="third__level__submit" type="submit" >Оставить заявку</button>
+                </form>
             </div>
       
         </div>
@@ -286,12 +286,16 @@
     </div>
 </template>
 
+<script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
 
     <script>
     export default {
     name: 'AccountPage' ,
         data() {
             return {
+                 mask: ['+',/\d/,'(', /\d/, /\d/, /\d/, ') ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+                 login: '',
+                 phone:'',
                   current_image: 1,
                   current_slide: 1,
                   object: {
@@ -310,6 +314,21 @@
         components: {
         },
         methods: {
+            confirmation() {
+                let obj = {
+                    name: this.login,
+                    phone: this.phone,
+                };
+       
+                this.$http.post('guest/send/message', obj)
+                .then(res => {
+                        this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
+                })
+                .catch(errors => {
+                    consol.log('Ошибка ' + error.response.data.errors);
+            
+                });
+            },
             change_image(level) {
                 this.current_image = level;
             },
@@ -956,6 +975,7 @@
                           
                         }
                         input {
+                            width: 70%;
                             margin-top: 20px;
                             padding: 15px;
                             border-radius: 22px;
@@ -973,6 +993,8 @@
                             text-align: center;
                             color: #384591;
                             margin-top: 20px;
+                            border:none;
+                            width: 80%;
                         }
                     
                    
@@ -980,10 +1002,30 @@
 
                 }
 
-    
+     @media only screen and (max-width: 600px) {
+        .buy__level  {
+            p:nth-child(1) {
+                font-size: 30px;
+            }
+        }
+     
+     }
 
     @media only screen and (max-width: 764px) {
-     
+        .third__level__contacts {
+            margin-top: 20px !important;
+        }
+        .buy__level {
+            height: 50px;
+        }
+        .buy__level  {
+            p:nth-child(1) {
+                font-size: 30px !important;
+            }
+        }
+        .buy__level p:nth-child(2) {
+            font-size: 12px !important;
+        }
         .main__images__row {
             width: 100% !important;
         }
@@ -991,8 +1033,9 @@
             width: 100%;
         }
         .main__image__main {
-            width: 100%;
+            width: 90%;
             align-self: center;
+            height: 350px;
 
         }
         .mainer {
@@ -1007,9 +1050,11 @@
             margin-left: 20px;
         }
         .main__pluses {
-            width: 70%;
+            width: 40%;
             flex-direction: column;
             margin: 0 10px;
+            margin-top:20px;
+            right: 20px;
         }
         .main__images__row {
             width: 100%;
@@ -1050,7 +1095,7 @@
             .buy__levels {
             width: 100%;
             overflow-x: scroll;
-            margin-top: 290px;
+            margin-top: 350px;
                 .buy__level {
                     margin: 0;
                     width: 100%;
@@ -1143,11 +1188,20 @@
         .main__etajes {
             width:100%;
             justify-content: center;
+            flex-direction: row !important;
+            overflow-x: scroll;
+        }
+        .main__images__title {
+            font-size: 18px !important;
+            margin-top: 20px;
         }
         .main__plan__etaj {
-            width: 120px !important;
-            height: 120px !important;
+            width: 100px !important;
+            height: 100px !important;
             align-self: center;
+            p {
+                font-size: 14px !important;
+            }
         }
 
         .language-div {

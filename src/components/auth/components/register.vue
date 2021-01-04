@@ -273,10 +273,10 @@ export default {
             // this.$router.push('/reg_confirm');
             // this.isLogin = "step-2";
         })
-          .catch(errors => {
-             consol.log('Ошибка ' + error.response.data.errors);
-      
-          });
+        .catch(errors => {
+            consol.log('Ошибка ' + error.response.data.errors);
+    
+        });
     },
 
   },
