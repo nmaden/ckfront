@@ -261,7 +261,7 @@
         </div>
           <div class="main__links">
               <a href="https://wa.me/+7 700 362 0377" target="_blank"><i class="fab fa-telegram"></i></a>
-              <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.instagram.com/sk.kaspi.group/" target="_blank"><i class="fab fa-instagram"></i></a>
               <a href="https://wa.me/+7 700 362 0377" target="_blank"><i class="fab fa-whatsapp"></i></a>
            
                 
