@@ -10,6 +10,7 @@
     import Burger from '../components/burger/burger.vue'; 
     import Korzina from '../components/burger/busket.vue';
 
+    import OrderKaspi from '../components/kaspigroup/kaspi_order.vue';
 
 
     import KenesMain from '../components/kenes/index.vue'; 
@@ -50,6 +51,15 @@
                 { path: 'register', component: Register },
                 { path: 'reg_confirm', component: Reg_confirm },
                 { path: 'check', component: Check }
+            ]
+        },
+        {
+            path: '/order',
+            component: OrderKaspi,
+            meta: { guest: true },
+            children: [
+                // { path: 'burger', component: Burger},
+                { path: '', component: OrderKaspi }
             ]
         },
         {

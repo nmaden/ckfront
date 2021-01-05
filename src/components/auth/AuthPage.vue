@@ -230,7 +230,9 @@
 
                     <div class="contacts__contact main__column">
                         <p class="contacts__bold">Номер телефона:</p>
-                        <p>+ 7 700 362 0377</p>
+                        <a href="tel:+7 707 650 0104">+7 707 650 0104</a>
+                        <a href="tel:+7 707 650 0104">+7 776 769 6777</a>
+                        <a href="tel:+7 775 567 5750">+7 775 567 5750</a>
                     </div>
                     <div class="contacts__contact main__column">
                         <p class="contacts__bold">Адрес:</p>
@@ -260,9 +262,9 @@
       
         </div>
           <div class="main__links">
-              <a href="https://wa.me/+7 700 362 0377" target="_blank"><i class="fab fa-telegram"></i></a>
+              <a href="https://wa.me/+7 707 650 0104" target="_blank"><i class="fab fa-telegram"></i></a>
               <a href="https://www.instagram.com/sk.kaspi.group/" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://wa.me/+7 700 362 0377" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/+7 707 650 0104" target="_blank"><i class="fab fa-whatsapp"></i></a>
            
                 
                 
@@ -285,7 +287,6 @@
      
     </div>
 </template>
-
 <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
 
     <script>
