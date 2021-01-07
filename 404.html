@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="notfound">
+    <div>
+        <img src="./img/404.svg" alt="">
+    </div>
+    <p class="first-text"> Техникалық жұмыстар жүргізілуде</p>
+    <p class="second-text">Жүйе 5-10 минут ішінде қол жетімді болады</p>
+    
+    <p class="first-text">Ведутся технические работы</p>
+    <p class="second-text">Система будет доступна в течение 5-10 минут</p>
+    <p class="first-text">Technical work is underway</p>
+    <p class="second-text">The system will be available within 5-10 minutes</p>
+    
+
+    
+   
+
+
+    <!-- <a  class="eq__btn" style="text-decoration: none" href="https://eqonaq.kz" >На главную</a> -->
+</body>
+</html>
+
+<style>
+  p,a {
+    font-family: Tahoma;
+    margin:0;
+    padding:0;
+  }
+  .notfound {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    text-align: center;
+   
+  }
+  .first-text {
+    margin-bottom: 10px;
+  }
+  .notfound .first-text {
+    font-weight: bold;
+    font-size: 46px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  .notfound img {
+    width: 70%;
+  }
+  .second-text {
+    font-size: 26px;
+    font-weight: normal;
+  }
+  .eq__btn {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #2B80CD;
+    box-shadow: #ccc;
+    border-radius: 3px; 
+    color: white;
+    height: 49px;
+    
+    
+    }
+    .eq__btn p {
+
+        line-height: 1;
+        font-size: 22px;
+        font-weight: bold;
+        
+    }
+  @media only screen and (max-width: 600px) {
+        .notfound {
+            width: 100%;
+            justify-content: center;
+        }   
+        .notfound img {
+            width: 100%;
+        }   
+        .notfound p {
+            font-size: 18px;
+        }  
+        .first-text {
+            font-size: 22px !important;
+            margin-bottom: 5px !important;
+        }    
+   }
+
+</style>
