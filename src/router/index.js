@@ -11,6 +11,7 @@
     import Korzina from '../components/burger/busket.vue';
 
     import OrderKaspi from '../components/kaspigroup/kaspi_order.vue';
+    import SignKaspi from '../components/kaspigroup/login.vue';
 
 
     import KenesMain from '../components/kenes/index.vue'; 
@@ -60,6 +61,14 @@
             children: [
                 // { path: 'burger', component: Burger},
                 { path: '', component: OrderKaspi }
+            ]
+        },
+        {
+            path: '/login_kaspi',
+            component: SignKaspi,
+            meta: { guest: true },
+            children: [
+                { path: '', component: SignKaspi }
             ]
         },
         {

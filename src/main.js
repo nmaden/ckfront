@@ -21,7 +21,20 @@ Vue.use(VueCookies);
 Vue.use(VModal, { dialog: true });
 
 Vue.prototype.$http = axios.create({
-  baseURL: 'https://newapi.ck-kaspi-group.info/api/v1',
+  // baseURL: 'https://newapi.ck-kaspi-group.info/api/v1',
+   baseURL: 'http://127.0.0.1:8000/api/v1',
+});
+
+
+//обработка ошибок бэка
+axios.interceptors.response.use(response => {
+  return response;
+}, error => {
+  if (error.response.status === 401) {
+        router.replace('/');
+        return Promise.resolve(error.response);
+  }
+  return Promise.reject(error);
 });
 
 
