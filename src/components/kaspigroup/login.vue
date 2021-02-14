@@ -57,6 +57,9 @@
       justify-content: center;
       align-items: center;
       height: 70vh;
+      @media only screen and (max-width: 764px) {
+        width: 100%;
+      }
       .sign__page__title {
         font-weight: bold;
         font-size: 26px;
@@ -70,6 +73,9 @@
           width: 300px;
           padding: 20px;
           margin-bottom: 20px;
+          @media only screen and (max-width: 764px) {
+             width: 200px;
+          }
         }
         ::placeholder {
           color: #333;
@@ -82,6 +88,9 @@
           border: none;
           background-color: cornflowerblue;
           padding: 20px;
+          @media only screen and (max-width: 764px) {
+             width: 250px;
+          }
           p {
             color: white;
             font-weight: bold;

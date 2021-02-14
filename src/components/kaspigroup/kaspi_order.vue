@@ -1,9 +1,11 @@
 <template>
-  <div class="house__order">
+  <div class=" house__column">
 
       <div class="house__modal" v-if="show_modal">
-          <i class="fas fa-times" @click="hide_modal(1)"></i>
+          
           <form class="house__modal__inner" @submit.prevent="send_order" >
+                
+                <i class="far fa-times-circle" @click="hide_modal(1)"></i>
                 <p class="house__title">Забронировать квартиру</p>
 
 
@@ -100,6 +102,15 @@
               <p class="house__logout" @click="logout">Выйти из системы</p>
           </div>
       </div>
+
+      <select class="house__select__etaj" name="" id="" v-model="current_etaj">
+
+        <option value="1">1 этаж</option>
+        <option value="2">2 этаж</option>
+        <option value="3">3 этаж</option>
+        <option value="4">4 этаж</option>
+        <option value="5">5 этаж</option>
+      </select>
       <div class="house__etajes">
           <div class="house__etaj"  v-bind:class="{ houst__etaj__active: current_etaj==1 }" @click="get_etaj(1)">
             <p>1 этаж</p>
@@ -486,8 +497,16 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
- 
-
+    position: relative;
+    .fa-times-circle {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+     @media only screen and (max-width: 764px) {
+        width: 80%;
+     
+    }
     position: absolute;
     .house__value {
       margin-bottom: 10px;
@@ -514,6 +533,10 @@
       padding: 10px;
       width: 270px;
       margin-bottom: 10px;
+       @media only screen and (max-width: 764px) {
+        width: 220px;
+     
+      }
     }
     .house__submit {
       border: none;
@@ -523,6 +546,10 @@
       text-align:center;
 
       text-transform: uppercase;
+      @media only screen and (max-width: 764px) {
+        width: 250px;
+     
+      }
       p {
         color: white;
       }
@@ -593,6 +620,12 @@
       border-bottom: 2px solid white;
     } 
 }
+
+.house__select__etaj {
+    display: none;
+    padding: 20px;
+    align-self: center;
+}
 .house__etajes {
   display: flex;
   flex-direction: row;
@@ -600,6 +633,12 @@
   justify-content: space-evenly;
   margin-bottom: 20px;
   margin-top: 60px;
+  overflow-x:auto;
+   @media only screen and (max-width: 764px) {
+      width: 90%;
+      align-self: center;
+      padding: 0;
+    }
   .house__etaj {
     cursor: pointer;
     display: flex;
@@ -612,13 +651,19 @@
     p {
       color: white;
     }
+    @media only screen and (max-width: 764px) {
+      padding: 10px;
+    }
   } 
 }
 .house {
   display: flex;
   flex-direction: column;
   align-items: center;
-
+    @media only screen and (max-width: 764px) {
+  
+        width: 100%;
+    }
   .house__current {
     margin-bottom: 20px;
     font-weight: bold;
@@ -630,6 +675,10 @@
     justify-content: flex-end;
     align-items:center;
     margin-right: 20px;
+    @media only screen and (max-width: 764px) {
+        flex-direction: column;
+        width: 100%;
+    }
   }
 }
  .house__edit {
@@ -642,6 +691,11 @@
    margin-bottom: 40px;
    margin-right: 5px;
    position: relative;
+     @media only screen and (max-width: 764px) {
+        justify-content: center;
+        text-align: center;
+     
+    }
   
    .house__podezd {
      position: absolute;
@@ -649,6 +703,9 @@
      right: 180px;
      font-weight: bold;
      font-size: 28px;
+      @media only screen and (max-width: 764px) {
+        margin-bottom: 20px;
+    }
    }
    .house__c {
      display: flex;
@@ -668,16 +725,25 @@
      height: 400px;
      width: 150px;
      background-color: #367e8f;
+      @media only screen and (max-width: 764px) {
+        width: 100px;
+      }
    }
    .house__first {
      height: 140px;
      width: 150px;
      background-color: #a9a917;
+      @media only screen and (max-width: 764px) {
+        width: 100px;
+      }
    }
    .house__second {
      height: 300px;
      width: 150px;
      background-color: #007800;
+      @media only screen and (max-width: 764px) {
+        width: 100px;
+      }
    }
    .house__type {
      margin-bottom: 10px;
@@ -708,10 +774,13 @@
       width: 110px;
       text-align: center;
       background-color:cornflowerblue;
-     p {
-       font-size: 12px;
-       color:white;
-     }
+      p {
+        font-size: 12px;
+        color:white;
+      }
+      @media only screen and (max-width: 764px) {
+        width: 80px;
+      }
    }
  }
 </style>

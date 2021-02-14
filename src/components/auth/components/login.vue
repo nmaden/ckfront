@@ -1,5 +1,5 @@
 <template>
-      <form @submit.prevent="confirmation" >
+      <form @submit.prevent="confirmation"  class="send__order">
             <div class="div-login">
                 <div class="img-input">
                   <i class="fas fa-user-alt"></i>
@@ -28,7 +28,7 @@
                 </div>
                   
                 <p>{{ info }}</p> 
-                  <button class="" type="submit">{{$t("message.sign_in")}}</button>
+                  <button class="button" id="myBtn" type="submit">{{$t("message.sign_in")}}</button>
                   <!-- <a ><router-link to="/forgotPassword" >{{$t("message.forgot_pass")}}</router-link></a>
                   <a ><router-link to="/register" >{{$t("message.registration")}}</router-link></a> -->
             </div>
@@ -112,6 +112,7 @@ export default {
       }
     },
     confirmation() {
+      document.getElementById("myBtn").disabled = true;
       let obj = {
           name: this.login,
           phone: this.phone,
@@ -125,6 +126,10 @@ export default {
                 this.login = "";
                 this.phone = "";
                 this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
+
+                if(res.data) {
+                  document.getElementById("myBtn").disabled = false;
+                }
         })
         .catch(errors => {
             consol.log('Ошибка ' + error.response.data.errors);
@@ -139,7 +144,31 @@ export default {
   .img-input {
     i {
       font-size: 12px;
-      color: red;
+      color: #db2150;
     }
+    input {
+      color: white !important;
+    }
+    
   }
+  .send__order {
+    
+      button {
+        background-color: #db2150 !important;
+      }
+ 
+  }
+  
+
+ 
+
+      .button {
+      animation: glowing 1300ms infinite;
+      }
+      @keyframes glowing {
+        0% { background-color: #db2150;; box-shadow: 0 0 10px #db2150; }
+        50% { background-color: #df0c41;; box-shadow: 0 0 25px #ca0637;; }
+        100% { background-color: #c05a73;; box-shadow: 0 0 10px #ec6587;; }
+      }
+  
 </style>

@@ -156,7 +156,7 @@
                     <div class="main__row main__sxema">
                         <img class="main__plan" src="../../assets/images/kaspigroup/plan.png" alt="">
                         
-                        <div class=" main__etajes">
+                        <div class="main__etajes">
                             <div class="main__column main__plan__etaj"> 
                                 <p>1 комнатная квартира</p>
                                 <p>55.5кв.м</p>
@@ -171,12 +171,32 @@
                             </div>
                             <div class=" main__column main__plan__etaj">
                                 <p>Имеется лифт. (Белоруссия)</p>
-                                <p>Срок сдачи II квартал 2021 г.</p>
+                                <p>Срок сдачи I квартал 2022 г.</p>
                             </div>
                         </div>
                     </div>
                     
                 </div>
+
+                <div class="main__etajes main__etajes__mobile" v-if="current_image==4">
+                        <div class="main__column main__plan__etaj"> 
+                            <p>1 комнатная квартира</p>
+                            <p>55.5кв.м</p>
+                        </div>
+                        <div class="main__column main__plan__etaj">
+                            <p>2 комнатная квартира</p>
+                            <p>91.08кв.м</p>
+                        </div>
+                        <div class=" main__column main__plan__etaj">
+                            <p>3 комнатная квартира</p>
+                            <p>116.6кв.м</p>
+                        </div>
+                        <div class=" main__column main__plan__etaj">
+                            <p>Имеется лифт. (Белоруссия)</p>
+                            <p>Срок сдачи II квартал 2021 г.</p>
+                        </div>
+                </div>
+                
                
                 <div class="main__actions">
                     <div class="main__action" @click="change_image(1)" v-bind:class="{active_color: current_image==1}">
@@ -186,6 +206,9 @@
                         <div class="main__level__inside"></div>
                     </div>
                     <div  class="main__action" @click="change_image(3)" v-bind:class="{active_color: current_image==3}">
+                        <div class="main__level__inside"></div>
+                    </div>
+                    <div  class="main__action" @click="change_image(4)" v-bind:class="{active_color: current_image==4}">
                         <div class="main__level__inside"></div>
                     </div>
                     <!-- <div  class="main__action" @click="change_image(4)" v-bind:class="{active_color: current_image==4}">
@@ -256,15 +279,144 @@
                     <!-- <input type="text" placeholder="Электронная почта"> -->
                     <input type="text" v-mask="mask" placeholder="+7 xxx xx xx" v-model="phone" required>
                     
-                    <button class="third__level__submit" type="submit" >Оставить заявку</button>
+                    <button class="button third__level__submit" id="myBtn_2" type="submit" >Оставить заявку</button>
                 </form>
             </div>
       
         </div>
+
+        <div v-if="current_slide==4" class="faq third__level main__column">
+            <p class="main__faq__title main__mb">Часто задаваемые вопросы</p>
+            
+            <div class="main__faq main__mb" >
+                <div class="main__row main__ac" @click="choose_faq(1)">
+                    
+
+                    <i class="fas fa-chevron-up" v-if="question!=1" @click="choose_faq(1)"></i>
+                    <i class="fas fa-chevron-down" v-if="question==1" @click="choose_faq(1)"></i>
+                    
+                    <p>Где находиться офис?</p>
+                    <div class="main__qi ">
+                       <i class="fas fa-question"></i>
+                    </div>
+                </div>
+                
+                <div class="main__faq__ans" v-if="question==1">
+                    <p>Газиза Жубанова 3 Ж</p>
+                </div>
+            </div>
+            <div class="main__faq main__mb">
+                
+                <div class="main__row main__ac" @click="choose_faq(2)">
+                    <i class="fas fa-chevron-up"  v-if="question!=2" @click="choose_faq(2)"></i>
+                    <i class="fas fa-chevron-down" v-if="question==2" @click="choose_faq(2)"></i>
+
+                   
+                    <p>Квадратура  квартир?</p>
+                    <div class="main__qi">
+                       <i class="fas fa-question"></i>
+                    </div>
+                </div>
+                <div class="main__faq__ans"  v-if="question==2">
+                    <p>1 ком кварира - 55.5кв.м</p>
+                    <p>2 ком кварира - 91.08кв.м</p>
+                    <p>3 ком кварира - 116.6кв.м</p>
+                </div>
+             
+            </div>
+            <div class="main__faq main__mb" >
+               
+                <div class="main__row main__ac" @click="choose_faq(3)">
+
+
+                    <i class="fas fa-chevron-up" v-if="question!=3" @click="choose_faq(3)"></i>
+                    <i class="fas fa-chevron-down" v-if="question==3" @click="choose_faq(3)"></i>
+                  
+                    <p>Срок сдачи?</p>
+                    
+                    <div class="main__qi">
+                       <i class="fas fa-question"></i>
+                    </div>
+                </div>
+                <div class="main__faq__ans" v-if="question==3">
+                    <p>Срок сдачи I квартал 2022 г.</p>
+                </div>
+            </div>
+            <div class="main__faq main__mb" >
+               
+                <div class="main__row main__ac" @click="choose_faq(4)">
+
+                    <i class="fas fa-chevron-up"  v-if="question!=4" @click="choose_faq(4)"></i>
+                    <i class="fas fa-chevron-down" v-if="question==4" @click="choose_faq(4)"></i>
+                    <p>График работы?</p>
+
+
+                    <div class="main__qi">
+                       <i class="fas fa-question"></i>
+                    </div>
+                    
+                </div>
+                <div class="main__faq__ans"  v-if="question==4">
+                    <p>В будние дни мы работаем с 10:00 до 17:30, а в субботу у нас короткий день, с 10:00 до 16:00.</p>
+                </div>
+            </div>
+        </div>
+        <div v-if="current_slide==5" class="faq third__level main__column">
+                <p class="main__faq__title main__mb main__sale">Информаций | Акций</p>
+                
+                <div class="main__news ">
+
+                    <div class="main__new">
+                        <img  class="main__mb" src="../../assets/images/kaspigroup/kaspi_news.jpg" alt="">
+                        
+
+                        <div class="main__description">
+                            <p>Двор жилого комплекса "Каспий" будет благоустроен по всем критериям. Наш двор будет оснащен детской площадкой, мы обеспечим наших автолюбителей парковочными зонами и охраной всей территории.
+                                Разве не идеальное место для проживания всей семьей? Тем более, когда сейчас вы можете приобрести квартиру всего за 129 000 тг за кв.м.?</p>
+                        </div>
+                    </div>
+                    <div class="main__new">
+                        <img  class="main__mb" src="../../assets/images/kaspigroup/kaspi_news2.jpg" alt="">
+                        
+
+                        <div class="main__description">
+                            <p>Почему лучше купить жилье в новом доме🤔
+⠀
+- Покупая квартиру в новостройке, как правило, у вас есть большой выбор возможных планировок квартир и можно выбрать то, что подходит именно вам. В случае со "вторичкой" вы получаете однотипные планировки — маленькая кухня, неудобные прихожие и т.д.🔑
+⠀
+- В новом доме стены, лифты, лестничные пролеты будут чистыми. Состояние входных групп сильно влияет на общее впечатление от места проживания.🚪
+⠀
+- В новостройках люди будут примерно одного уровня жизни. Соответственно, меньше вероятности, что соседи у вас будут алкоголиками или наркоманами.💳
+⠀
+- Жилье в новых домах не имеет юридической истории и обременений.📃</p>
+                        </div>
+                    </div>
+                    <div class="main__new">
+                        <img  class="main__mb" src="../../assets/images/kaspigroup/kaspi_news3.jpg" alt="">
+                        
+
+                        <div class="main__description">
+                            <p>У кого нельзя покупать квартиру? Давайте сегодня поговорим про покупку квартиры на вторичном рынке недвижимости. К сожалению, на практике нередко встречаются случаи, когда люди, наконец-таки отыскав понравившуюся квартиру, не обращали внимание на продавца, как на личность (поведение, статус, возраст и т.п.), так как документы были "чистыми", и лишались не только денег, но и жилплощади.
+⠀
+При таких больших денежных вложениях, как покупка недвижимости, надо обращать внимание на все детали и нюансы, в том числе и на самого продавца. Сегодня мы рассмотрим типы людей, которых лучше сторониться при покупке квартиры. Или, по крайней мере, со всей тщательностью подойти к проверке всех нюансов.
+⠀
+📍 Доверенность
+⠀
+Конечно, бывают случаи, когда владелец квартиры уже давно находится на ПМЖ в другой стране и поэтому поручает продажу квартиры доверенному лицу. Но также есть статистика, когда доверенность оформляют от лица недееспособных людей или заверяют ее нотариусы, не имеющие лицензии. Или, к примеру, сам владелец квартиры оказывается мошенником и отзывает доверенность непосредственно перед сделкой.
+⠀
+Итог в таких ситуациях практически всегда одинаковый: суд встает на сторону владельца квартиры, а покупателю предстоят долгие разбирательства, чтобы вернуть обратно свои деньги, и не всегда это получается.
+⠀
+📍 Преклонный возраст
+⠀
+Не стоит покупать квартиру у человека, который старше 70 лет. Что может случиться? Ну, например, близкий родственник может приложить усилия и признать пожилого человека недееспособным, соответственно сделка аннулируется. Встречаются и такие ситуации, когда спустя год после продажи квартиры и спустя полгода после кончины человека, его дочери/сыновья умудрялись оспорить "трезвый ум и здравую память" родителей и признать продажу недействительной.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
           <div class="main__links">
-              <a href="https://wa.me/+7 707 650 0104" target="_blank"><i class="fab fa-telegram"></i></a>
+              <a href="https://wa.me/+77076500104" target="_blank"><i class="fab fa-telegram"></i></a>
               <a href="https://www.instagram.com/sk.kaspi.group/" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://wa.me/+7 707 650 0104" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://wa.me/+77076500104" target="_blank"><i class="fab fa-whatsapp"></i></a>
            
                 
                 
@@ -277,6 +429,12 @@
                     <div class="main__level__inside"></div>
                 </div>
                 <div  class="main__level" @click="change_level(3)" v-bind:class="{active_color: current_slide==3}">
+                    <div class="main__level__inside"></div>
+                </div>
+                <div  class="main__level" @click="change_level(4)" v-bind:class="{active_color: current_slide==4}">
+                    <div class="main__level__inside"></div>
+                </div>
+                 <div  class="main__level" @click="change_level(5)" v-bind:class="{active_color: current_slide==5}">
                     <div class="main__level__inside"></div>
                 </div>
         </div>
@@ -294,6 +452,7 @@
     name: 'AccountPage' ,
         data() {
             return {
+                question: 1,
                  mask: ['+',/\d/,'(', /\d/, /\d/, /\d/, ') ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
                  login: '',
                  phone:'',
@@ -315,7 +474,12 @@
         components: {
         },
         methods: {
+            choose_faq(type) {
+                this.question = type;
+            },
             confirmation() {
+
+                document.getElementById("myBtn_2").disabled = true;
                 let obj = {
                     name: this.login,
                     phone: this.phone,
@@ -326,6 +490,8 @@
                     this.$alert("Наш менеджер перезвонит вам в течении 15 минут");
                     this.login = "";
                     this.phone = "";
+
+                    document.getElementById("myBtn_2").disabled = false;
                 })
                 .catch(errors => {
                     consol.log('Ошибка ' + error.response.data.errors);
@@ -367,6 +533,125 @@
 
 
     <style scoped lang="scss"> 
+
+                  .main__sale {
+                    padding: 5px;
+                    animation: glowing 2000ms infinite;
+                    }
+                    @keyframes glowing {
+                        0% { background-color: #2ba805; box-shadow: 0 0 10px #db2150 }
+                        50% { background-color: #db2150; box-shadow: 0 0 25px #db2150; }
+                        100% { background-color: #2ba805; box-shadow: 0 0 10px #db2150; }
+                    }
+                .main__news::-webkit-scrollbar {
+                    width: 7px;
+                    height: 7px;
+                }
+
+                .main__news::-webkit-scrollbar-track {
+                border-radius: 2px;
+       
+                }
+                .main__news::-webkit-scrollbar-thumb {
+                background-color: #db2150;
+                border-radius: 2px;
+                height: 10px;
+                }
+                .main__description::-webkit-scrollbar {
+                    width: 7px;
+                    height: 7px;
+                }
+
+                .main__description::-webkit-scrollbar-track {
+                border-radius: 2px;
+       
+                }
+                .main__description::-webkit-scrollbar-thumb {
+                background-color: #db2150;
+                border-radius: 2px;
+                height: 10px;
+                }
+                .main__news {
+                    width: 78%;
+                    display: flex;
+                    flex-direction: row;
+                    align-self: center;
+                    overflow-x: auto;
+                    .main__new {
+                        width: 100%;
+                        display:flex;
+                        flex-direction: column;
+                        align-items: center;
+                        align-self: center;
+                        
+                        img {
+                            
+                            width: 250px; 
+                        }
+                        .main__description {
+                            overflow-y:scroll;
+                            height: 100px;
+                            text-align: center;
+                            p {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                .main__faq__title {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: white;
+                    @media only screen and (max-width: 764px) {
+                        font-size: 16px;
+                        align-self: center;
+                    }
+                }
+                .main__ac {
+                    align-items: center;
+                }
+                .main__faq {
+                    align-self: center;
+                    width: 400px;
+                    background-color: #384591;
+                    
+                    border-radius: 5px;
+                    border-bottom: 5px solid white;
+                    p,i {
+                        color: white;
+                        cursor: pointer;
+                    }
+                    .main__faq__ans {
+                        padding: 10px;
+                    }
+                    @media only screen and (max-width: 764px) {
+                        width: 90%;
+                        padding: 0;
+
+                    }
+                    .main__row {
+                        justify-content: space-between;
+                        padding: 10px;
+                    }
+                    
+                    .main__qi {
+                        margin-right: 5px;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 15px;
+                        background-color: #ccc;
+                        display:flex;
+                        justify-content: center;
+                        align-items: center;
+                        i {
+                            color: white;
+                        }
+                    }
+                }
+                
+                .main__mr {
+                    margin-right: 10px;
+                }
                 .main__mb {
                     margin-bottom: 20px;
                 }
@@ -522,7 +807,38 @@
                         display: flex;
                         flex-wrap: wrap;
                         align-items: center;
-                    
+                        @media only screen and (max-width: 764px) {
+                            display: none;
+
+                        }
+
+                    }
+                    .main__etajes__mobile {
+                        z-index: 10;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        justify-content: center;
+                        
+                        .main__plan__etaj {
+                            width: 150px;
+                            height: 150px;
+                            margin: 10px;
+                            border-radius: 5px;
+                            padding: 10px;
+                            background-color: #e9eff8;
+                            
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            flex-direction: column-reverse;
+                      
+
+                            p:nth-child(2) {
+                                font-weight: bold;
+                                font-size: 20px;
+                            }
+                        }
                     }
                     .main__images__row {
                         position: relative;
@@ -618,7 +934,7 @@
                     flex-direction: column;
                     align-items: center;
                     align-self: center;
-                    margin-top: 40px;
+                    margin-top: 10px;
                     position: absolute;
                     
                     right: 20px;
@@ -785,7 +1101,7 @@
                     position: absolute;
                     top: 0;
                     bottom: 0;
-                    background-color: red;
+                    background-color: #581414;
                     z-index: 1;
                     opacity: 0.5;
                 }
@@ -930,6 +1246,10 @@
                         font-size: 32px;
                         font-weight: bold;
                         color: white;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 20px;
+                            align-self: flex-start;
+                        }
                       
                     }
                     .third__level__contacts {
@@ -997,6 +1317,7 @@
                             margin-top: 20px;
                             border:none;
                             width: 80%;
+                            color: white;
                         }
                     
                    
@@ -1037,7 +1358,7 @@
         .main__image__main {
             width: 90%;
             align-self: center;
-            height: 350px;
+            height: 297px;
 
         }
         .mainer {
@@ -1047,7 +1368,7 @@
             width: 100%;
         }
         .gallery__title {
-            font-size: 22px;
+            font-size: 20px;
             width: 100%;
             margin-left: 20px;
         }
@@ -1095,6 +1416,7 @@
         .third__level {
             width: 100%;
             .buy__levels {
+            display: subgrid;
             width: 100%;
             overflow-x: scroll;
             margin-top: 350px;
@@ -1163,13 +1485,13 @@
         .main__links {
             width: 100%;
             text-align: center;
-            background-color: red;
+            background-color: #db2150;
             position: fixed;
             bottom: 0;
             height: 50px;
             align-items: center;
 
-        }
+            }   
 
         .main__images__dom {
             .main__images__row  {
@@ -1187,12 +1509,7 @@
             flex-direction: column;
             align-items: center;
         }
-        .main__etajes {
-            width:100%;
-            justify-content: center;
-            flex-direction: row !important;
-            overflow-x: scroll;
-        }
+    
         .main__images__title {
             font-size: 18px !important;
             margin-top: 20px;
