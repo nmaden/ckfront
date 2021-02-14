@@ -537,6 +537,9 @@
                   .main__sale {
                     padding: 5px;
                     animation: glowing 2000ms infinite;
+                    width: 300px;
+                    align-self: center;
+                    text-align: center;
                     }
                     @keyframes glowing {
                         0% { background-color: #2ba805; box-shadow: 0 0 10px #db2150 }
