@@ -1,6 +1,9 @@
 <template>
   <div class=" house__column">
 
+      <div class="house__modal house__loader" v-if="loader_kaspi">
+        <img src="../../assets/images/kaspigroup/spinner2.gif" alt="">
+      </div>
       <div class="house__modal" v-if="show_modal">
           
           <form class="house__modal__inner" @submit.prevent="send_order" >
@@ -71,15 +74,59 @@
                     
                 <input type="text"   placeholder="Cумма" v-model="amount" required>
 
-                <div class="house__row">
-                    <input type="checkbox" v-model="ordered" id="">
-                    <p>Забронировано</p>
+                <div class="house__ordered__not" >
+                   <span>Забронировано (Важно! если нажать на галочку и сохранить то удаляет бронь)</span>
+                    <input type="checkbox" v-model="ordered" id="" style="width: 40px; margin-bottom: 0">
                 </div>
                 
 
                 <button class="house__submit"  type="submit">
                   <p>Сохранить</p>
                 </button>
+          </form>
+
+
+      </div>
+
+
+      <div class="house__modal" v-if="see_modal">
+          <i class="fas fa-times" @click="hide_modal(3)"></i>
+          <form class="house__modal__inner"  >
+                <p class="house__title">Посмотреть квартиру</p>
+
+
+                <div class="house__value">
+                  <p>Подьезд: </p>
+                  <p>{{this.podezd}}</p>
+                </div>
+                <div class="house__value">
+                  <p>Этаж: </p>
+                  <p>{{this.etaj}}</p>
+                </div>
+                <div class="house__value">
+                  <p>Квартира: </p>
+                  <p>{{this.kvartira }} -x ком</p>
+                </div>
+              
+
+
+                <input type="text" placeholder="Имя" v-model="name" required>
+                <input type="text" placeholder="Фамилия" v-model="surname" required>
+                <input type="text" placeholder="ИИН" v-model="iin" minlength="12" required>
+               
+                <input type="text" v-mask="mask"   v-model="phone"  placeholder="+7 xxx xx xx"  required>
+                    
+                <input type="text"   placeholder="Cумма" v-model="amount" required>
+
+                <div class="house__ordered__not" >
+                   <span>Забронировано</span>
+                    <input type="checkbox" v-model="ordered" id="" style="width: 40px; margin-bottom: 0">
+                </div>
+                
+
+                <!-- <button class="house__submit"  type="submit">
+                  <p>Сохранить</p>
+                </button> -->
           </form>
 
 
@@ -157,6 +204,20 @@
                                   <p>Забронировано</p>
                                </div>
                                <div  v-if="role==1" class="house__order__green"  
+                                  @click="see_modal_open(
+                                  value.etaj_id,
+                                  value.kvartira,
+                                  value.podezd_id,
+                                  value.name,
+                                  value.surname,
+                                  value.phone,
+                                  value.iin,
+                                  value.ordered,
+                                  value.amount)" >
+                                  <i class="fas fa-eye"></i>
+                                  <p>Посмотреть</p>
+                               </div>
+                               <div  v-if="role==1" class="house__order__green"  
                                   @click="edit_modal_open(
                                   value.etaj_id,
                                   value.kvartira,
@@ -170,6 +231,7 @@
                                  <i class="fas fa-pen"></i>
                                   <p>Редактировать</p>
                                </div>
+                               
                                
                             </div>
                       </div>
@@ -188,6 +250,20 @@
                                   <i class="fas fa-clipboard-check"></i>
                                   <p>Забронировано</p>
                                </div>
+                               <div  v-if="role==1" class="house__order__green"  
+                                  @click="see_modal_open(
+                                  value.etaj_id,
+                                  value.kvartira,
+                                  value.podezd_id,
+                                  value.name,
+                                  value.surname,
+                                  value.phone,
+                                  value.iin,
+                                  value.ordered,
+                                  value.amount)" >
+                                  <i class="fas fa-eye"></i>
+                                  <p>Посмотреть</p>
+                               </div>
                                <div  v-if="role==1" class="house__order__green" @click="
                                edit_modal_open(
                                   value.etaj_id,
@@ -202,6 +278,7 @@
                                   <i class="fas fa-pen"></i>
                                   <p>Редактировать</p>
                                </div>
+                               
                             </div>
                           </div>
                           <div v-if="value.kvartira==3" class="house__third house__c" >
@@ -218,7 +295,21 @@
                                   <i class="fas fa-clipboard-check"></i>
                                   <p>Забронировано</p>
                                </div>
-                                <div v-if="role==1" class="house__order__green"  
+                               <div  v-if="role==1" class="house__order__green"  
+                                  @click="see_modal_open(
+                                  value.etaj_id,
+                                  value.kvartira,
+                                  value.podezd_id,
+                                  value.name,
+                                  value.surname,
+                                  value.phone,
+                                  value.iin,
+                                  value.ordered,
+                                  value.amount)" >
+                                  <i class="fas fa-eye"></i>
+                                  <p>Посмотреть</p>
+                               </div>
+                              <div v-if="role==1" class="house__order__green"  
                                 @click="edit_modal_open(
                                   value.etaj_id,
                                   value.kvartira,
@@ -232,6 +323,8 @@
                                   <i class="fas fa-pen"></i>
                                   <p>Редактировать</p>
                                </div>
+                               
+                               
                             </div>
                             
                             
@@ -251,6 +344,7 @@
     name: 'SignPage' ,
         data() {
           return {
+            loader_kaspi: false,
             user_name: '',
             role: '',
             mask: ['+',/\d/,'(', /\d/, /\d/, /\d/, ') ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
@@ -262,6 +356,7 @@
             password: '',
             show_modal: false,
             edit_modal: false,
+            see_modal: false,
             name: "",
             surname: "",
             iin: "",
@@ -315,6 +410,30 @@
               this.ordered = ordered;
               this.amount = amount;
            },
+           see_modal_open(
+            etaj,
+            kvartira,
+            podezd,
+            name,
+            surname,
+            phone,
+            iin,
+            ordered,
+            amount
+           ) {
+              this.see_modal = !this.see_modal;
+
+              this.etaj = etaj;
+              this.kvartira = kvartira;
+              this.podezd = podezd;
+
+              this.name = name;
+              this.surname = surname;
+              this.phone = phone;
+              this.iin = iin;
+              this.ordered = ordered;
+              this.amount = amount;
+           },
            select_roof(type) {
              this.roof = type;
            },
@@ -335,9 +454,12 @@
              if(type==1) {
 
               this.show_modal = false;
-             }else {
+             }if(type==2) {
                 
               this.edit_modal = false; 
+             }
+             else {
+              this.see_modal = false; 
              }
            },
            get_profile() {
@@ -359,6 +481,7 @@
               });
            },
            get_etaj(etaj) {
+              this.loader_kaspi = true;
               this.current_etaj = etaj;
          
               this.$http.get('user/apartment/get?etaj='+etaj,
@@ -370,6 +493,7 @@
               .then(res => {
              
                   this.etaj_info = res.data;
+                  this.loader_kaspi = false;
               })
               .catch(errors => {
                   consol.log('Ошибка ' + error.response.data.errors);
@@ -421,6 +545,7 @@
               })
            },
            send_order() {
+             this.loader_kaspi = true;
               let obj = {
                     etaj: this.etaj,
                     kvartira: this.kvartira,
@@ -449,6 +574,7 @@
                   this.podezd = "";
 
                   this.get_etaj(this.current_etaj);
+                  this.loader_kaspi = false;
 
                   this.show_modal = false;
               })
@@ -468,6 +594,27 @@
    .house__ordered {
      font-size: 12px !important;
    }
+
+.house__ordered__not {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  span {
+    font-size: 16px;
+  }
+  input {
+    width: 40px;
+    padding: 15px;
+
+  }
+}
+.house__loader {
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
 .house__modal {
   display: flex;
   flex-direction: column;
@@ -730,7 +877,7 @@
       }
    }
    .house__first {
-     height: 140px;
+     height: 200px;
      width: 150px;
      background-color: #a9a917;
       @media only screen and (max-width: 764px) {
@@ -749,7 +896,7 @@
      margin-bottom: 10px;
    }
     .house__order__green {
-      background-color: red;
+      background-color: #379e37;
       padding: 8px 4px;
  
       display:flex;
